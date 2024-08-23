@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Happy Birthday</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="text-container">
+        <h1>WELCOME TO MY WEBSITE</h1>
+        <h2>I'M YOUR AASS</h2>
+    </div>
+    
+    <div class="login-container">
+        <h2>Enter Password</h2>
+        <input type="password" id="passwordInput" placeholder="Enter Password">
+        <button onclick="checkPassword()">Enter</button>
+        <p id="errorMessage" class="error-message"></p>
+    </div>
+
+    <div id="birthdayPage" class="hidden">
+        <div class="container">
+            <h1>Adavance Happy Birthday, Srikari!</h1>
+            <p>Wishing you a day filled with love, laughter, and joy.</p>
+            <button onclick="showMessage()">Click for a Surprise!</button>
+            <p id="surpriseMessage"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
