@@ -84,8 +84,9 @@ input[type="password"]::placeholder{ color:#999; font-style:italic; }
 button {
   padding: 15px 30px; font-size:1.05em; font-weight:600;
   background: linear-gradient(45deg,#667eea,#764ba2);
-  border:none; color:#fff; cursor:pointer; border-radius:14px; transition:.25s;
+  border:none; color:#fff; cursor:pointer; border-radius:14px; transition:all .3s ease;
   width:100%; letter-spacing:.5px; position:relative; overflow:hidden;
+  transform: scale(1);
 }
 button::before{
   content:''; position:absolute; inset:0; left:-100%;
@@ -93,8 +94,19 @@ button::before{
   transition:left .5s;
 }
 button:hover::before{ left:100%; }
-button:hover{ transform: translateY(-3px); box-shadow:0 10px 25px rgba(102,126,234,.4); }
-button:active{ transform: translateY(-1px); }
+button:hover{ 
+  transform: translateY(-3px) scale(1.02); 
+  box-shadow:0 15px 35px rgba(102,126,234,.5);
+  background: linear-gradient(45deg,#5a6fd8,#6a4190);
+}
+button:active{ 
+  transform: translateY(-1px) scale(0.98);
+  box-shadow:0 5px 15px rgba(102,126,234,.3);
+}
+button:focus {
+  outline: 2px solid rgba(255,255,255,0.5);
+  outline-offset: 2px;
+}
 
 .hidden { display:none !important; }
 .error-message {
@@ -147,6 +159,72 @@ button:active{ transform: translateY(-1px); }
   to { transform: translateY(-110vh) translateX(var(--drift, 0px)); opacity: .95; }
 }
 
+/* Enhanced visual feedback */
+.unlocked {
+  animation: unlockPulse 2s ease-out;
+}
+
+@keyframes unlockPulse {
+  0% { filter: brightness(1); }
+  50% { filter: brightness(1.1) saturate(1.1); }
+  100% { filter: brightness(1); }
+}
+
+/* Particle effects for enhanced celebration */
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #ff6b6b;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: particleFloat 3s ease-out forwards;
+}
+
+@keyframes particleFloat {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px) scale(0.5);
+  }
+}
+
+/* Enhanced glass card with more depth */
+.glass-card {
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 24px; padding: 36px 28px;
+  box-shadow: 
+    0 18px 50px rgba(0,0,0,.25),
+    inset 0 1px 0 rgba(255,255,255,.2),
+    0 0 0 1px rgba(255,255,255,.1);
+  backdrop-filter: blur(20px);
+  position: relative;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.5), transparent);
+}
+
+/* Enhanced button animations */
+.actions button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.actions button:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(0,0,0,.15);
+}
+
 /* Responsive */
 @media (max-width: 768px){
   .text-container h1 { font-size:2.2em; }
@@ -154,4 +232,6 @@ button:active{ transform: translateY(-1px); }
   .container h1 { font-size:2.2em; }
   .container p { font-size:1.05em; }
   #surpriseMessage { font-size:1.02em; padding:20px; }
+  .actions { flex-direction: column; }
+  .actions button { width: 100%; margin: 5px 0; }
 }
