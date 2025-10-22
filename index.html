@@ -1,32 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Happy Birthday - Updated</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Birthday | Anil</title>
+
+  <!-- Basic SEO / Social -->
+  <meta name="theme-color" content="#764ba2" />
+  <meta name="description" content="A little birthday surprise for Anil — open to reveal your wish!" />
+  <meta property="og:title" content="Happy Birthday, Anil 🎉" />
+  <meta property="og:description" content="Open to reveal your surprise wish." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="websiteimage.jpg" />
+
+  <link rel="icon" href="websiteimage.jpg" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <div class="text-container">
-        <h1>WELCOME TO MY WEBSITE</h1>
-    </div>
-    
-    <div class="login-container">
-        <h2>Enter Password</h2>
-        <input type="password" id="passwordInput" placeholder="Enter Password">
-        <button onclick="checkPassword()">Enter</button>
-        <p id="errorMessage" class="error-message"></p>
+  <div class="text-container">
+    <h1>WELCOME TO MY WEBSITE</h1>
+  </div>
+
+  <!-- Password Gate -->
+  <div class="login-container">
+    <h2>Enter Password</h2>
+    <input type="password" id="passwordInput" placeholder="Enter Password" />
+    <button id="enterBtn" onclick="checkPassword()">Enter</button>
+    <p id="errorMessage" class="error-message" aria-live="polite"></p>
+  </div>
+
+  <!-- Birthday Page -->
+  <div id="birthdayPage" class="hidden" aria-hidden="true">
+    <div class="container glass-card">
+      <h1>Happy Birthday, Anil! 🎉</h1>
+      <p>Wishing you a day filled with love, laughter, and joy.</p>
+
+      <div class="cta">
+        <button id="surpriseBtn" onclick="showMessage()">Open Your Surprise</button>
+      </div>
+
+      <p id="surpriseMessage" class="typewriter"></p>
+
+      <div id="shareRow" class="actions hidden">
+        <button id="copyBtn">Copy Wish</button>
+        <button id="shareBtn">Share</button>
+        <button id="againBtn">Fireworks Again</button>
+      </div>
     </div>
 
-    <div id="birthdayPage" class="hidden">
-        <div class="container">
-            <h1>Happy Birthday, Anil!</h1>
-            <p>Wishing you a day filled with love, laughter, and joy.</p>
-            <button onclick="showMessage()">Click for a Surprise!</button>
-            <p id="surpriseMessage"></p>
-        </div>
-    </div>
+    <!-- Floating celebration layer -->
+    <div id="balloonLayer" aria-hidden="true"></div>
+  </div>
 
-    <script src="script.js"></script>
+  <!-- Tiny confetti library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

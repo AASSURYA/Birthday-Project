@@ -1,311 +1,157 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    background-attachment: fixed;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow-x: hidden;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
 }
 
-/* Animated background particles */
+/* Parallax-esque soft background image */
 body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('websiteimage.jpg') no-repeat center center;
-    background-size: cover;
-    opacity: 0.3;
-    z-index: -1;
-    animation: backgroundShift 20s ease-in-out infinite;
+  content: '';
+  position: fixed; inset: 0;
+  background: url('websiteimage.jpg') center/cover no-repeat;
+  opacity: 0.28;
+  z-index: -2;
+  animation: backgroundShift 20s ease-in-out infinite;
 }
 
 @keyframes backgroundShift {
-    0%, 100% { transform: scale(1) rotate(0deg); }
-    50% { transform: scale(1.05) rotate(1deg); }
+  0%,100% { transform: scale(1) rotate(0deg); }
+  50%     { transform: scale(1.05) rotate(1deg); }
 }
 
-.text-container {
-    text-align: center;
-    color: white;
-    margin-bottom: 30px;
-    animation: fadeInDown 1s ease-out;
+/* Floating color fields */
+body::after {
+  content: '';
+  position: fixed; inset: 0; z-index: -1;
+  background-image:
+    radial-gradient(circle at 20% 80%, rgba(120,119,198,.25) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255,119,198,.22) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(120,219,255,.22) 0%, transparent 50%);
+  animation: float 6s ease-in-out infinite;
+}
+@keyframes float {
+  0%,100% { transform: translateY(0) rotate(0); }
+  33%     { transform: translateY(-20px) rotate(1deg); }
+  66%     { transform: translateY(10px) rotate(-1deg); }
 }
 
+/* Header text */
+.text-container { text-align: center; color: white; margin-bottom: 30px; animation: fadeInDown 1s ease-out; }
 .text-container h1 {
-    font-size: 3.5em;
-    font-weight: 700;
-    margin: 0;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
-    background-size: 300% 300%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: gradientShift 3s ease-in-out infinite;
+  font-size: 3.2em; font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0,0,0,.3);
+  background: linear-gradient(45deg,#ff6b6b,#4ecdc4,#45b7d1,#96ceb4);
+  background-size: 300% 300%;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; animation: gradientShift 3s ease-in-out infinite;
 }
+@keyframes gradientShift { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
+@keyframes fadeInDown { from{opacity:0; transform:translateY(-30px)} to{opacity:1; transform:translateY(0)} }
 
-@keyframes gradientShift {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-}
-
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
+/* Login card */
 .login-container {
-    text-align: center;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.2);
-    width: 400px;
-    animation: slideInUp 1s ease-out;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+  text-align: center;
+  background: rgba(255,255,255,.95);
+  backdrop-filter: blur(10px);
+  padding: 40px; border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.1), 0 0 0 1px rgba(255,255,255,.2);
+  width: 400px; animation: slideInUp 1s ease-out;
+  border: 1px solid rgba(255,255,255,.3);
 }
-
-@keyframes slideInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
+@keyframes slideInUp { from{opacity:0; transform:translateY(30px)} to{opacity:1; transform:translateY(0)} }
 .login-container h2 {
-    color: #333;
-    font-size: 1.8em;
-    font-weight: 600;
-    margin-bottom: 25px;
-    background: linear-gradient(45deg, #667eea, #764ba2);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  color:#333; font-size:1.8em; font-weight:600; margin-bottom: 25px;
+  background: linear-gradient(45deg,#667eea,#764ba2);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
 }
-
-input[type="password"] {
-    padding: 15px 20px;
-    font-size: 1.1em;
-    border: 2px solid transparent;
-    border-radius: 15px;
-    margin-bottom: 20px;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.9);
-    transition: all 0.3s ease;
-    outline: none;
-    font-family: 'Poppins', sans-serif;
+input[type="password"]{
+  padding: 15px 20px; font-size:1.1em; border:2px solid transparent; border-radius:15px; margin-bottom:20px; width:100%;
+  background: rgba(255,255,255,.9); transition:.3s; outline:none; font-family:'Poppins',sans-serif;
 }
-
-input[type="password"]:focus {
-    border-color: #667eea;
-    box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
-    transform: translateY(-2px);
-}
-
-input[type="password"]::placeholder {
-    color: #999;
-    font-style: italic;
-}
+input[type="password"]:focus{ border-color:#667eea; box-shadow:0 0 20px rgba(102,126,234,.3); transform:translateY(-2px); }
+input[type="password"]::placeholder{ color:#999; font-style:italic; }
 
 button {
-    padding: 15px 30px;
-    font-size: 1.2em;
-    font-weight: 600;
-    background: linear-gradient(45deg, #667eea, #764ba2);
-    border: none;
-    color: white;
-    cursor: pointer;
-    border-radius: 15px;
-    transition: all 0.3s ease;
-    width: 100%;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    position: relative;
-    overflow: hidden;
+  padding: 15px 30px; font-size:1.05em; font-weight:600;
+  background: linear-gradient(45deg,#667eea,#764ba2);
+  border:none; color:#fff; cursor:pointer; border-radius:14px; transition:.25s;
+  width:100%; letter-spacing:.5px; position:relative; overflow:hidden;
 }
-
-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    transition: left 0.5s;
+button::before{
+  content:''; position:absolute; inset:0; left:-100%;
+  background: linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);
+  transition:left .5s;
 }
+button:hover::before{ left:100%; }
+button:hover{ transform: translateY(-3px); box-shadow:0 10px 25px rgba(102,126,234,.4); }
+button:active{ transform: translateY(-1px); }
 
-button:hover::before {
-    left: 100%;
-}
-
-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
-}
-
-button:active {
-    transform: translateY(-1px);
-}
-
-.hidden {
-    display: none;
-}
-
+.hidden { display:none !important; }
 .error-message {
-    color: #ff4757;
-    font-weight: 600;
-    margin-top: 15px;
-    padding: 10px;
-    background: rgba(255, 71, 87, 0.1);
-    border-radius: 10px;
-    border-left: 4px solid #ff4757;
-    animation: shake 0.5s ease-in-out;
+  color:#ff4757; font-weight:600; margin-top:15px; padding:10px;
+  background: rgba(255,71,87,.08); border-radius:10px; border-left:4px solid #ff4757; animation: shake .5s;
 }
+@keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px)} 75%{transform:translateX(5px)} }
 
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    75% { transform: translateX(5px); }
+/* Birthday container */
+.container { text-align:center; color:white; margin-top: 8vh; animation: fadeInUp 1.2s ease-out; max-width: 860px; padding: 0 20px; }
+.glass-card {
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 24px; padding: 36px 28px;
+  box-shadow: 0 18px 50px rgba(0,0,0,.25);
 }
-
-.container {
-    text-align: center;
-    color: white;
-    margin-top: 10%;
-    animation: fadeInUp 1.5s ease-out;
-    max-width: 800px;
-    padding: 0 20px;
+.container h1{
+  font-size:3.2em; font-weight:700; margin-bottom:.35em;
+  text-shadow:3px 3px 6px rgba(0,0,0,.3);
+  background: linear-gradient(45deg,#ff6b6b,#4ecdc4,#45b7d1,#96ceb4,#feca57);
+  background-size: 400% 400%;
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  animation: gradientShift 4s ease-in-out infinite;
 }
-
-.container h1 {
-    font-size: 4em;
-    font-weight: 700;
-    margin-bottom: 0.5em;
-    text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
-    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57);
-    background-size: 400% 400%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: gradientShift 4s ease-in-out infinite;
-}
-
-.container p {
-    font-size: 1.8em;
-    margin-bottom: 2em;
-    font-weight: 300;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-    line-height: 1.6;
-}
+.container p { font-size:1.25em; margin-bottom:1.4em; font-weight:300; text-shadow:2px 2px 4px rgba(0,0,0,.35); line-height:1.6; }
 
 #surpriseMessage {
-    background: rgba(255, 255, 255, 0.95);
-    color: #333;
-    padding: 30px;
-    border-radius: 20px;
-    margin-top: 30px;
-    font-size: 1.2em;
-    line-height: 1.8;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    animation: slideInUp 0.8s ease-out;
-    display: none;
+  background: rgba(255,255,255,.96); color:#333; padding:28px; border-radius:18px; margin-top:22px;
+  font-size:1.12em; line-height:1.85; box-shadow:0 20px 40px rgba(0,0,0,.12);
+  border: 1px solid rgba(255,255,255,.3); display:none;
+}
+.typewriter.revealing { display:block; }
+
+.actions { margin-top:18px; display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
+.actions button { width:auto; min-width:180px; }
+
+#balloonLayer {
+  position: fixed; inset: 0; pointer-events: none; z-index: 3;
+}
+.balloon {
+  position: absolute; bottom: -80px;
+  width: 16px; height: 22px; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  box-shadow: inset -3px -6px 12px rgba(0,0,0,.15);
+  opacity: .9; animation: rise linear forwards;
+}
+.balloon::after{
+  content:''; position:absolute; left:50%; top:100%; width:2px; height:28px; background:rgba(0,0,0,.2);
+}
+@keyframes rise {
+  to { transform: translateY(-110vh) translateX(var(--drift, 0px)); opacity: .95; }
 }
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Floating particles animation */
-body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
-    animation: float 6s ease-in-out infinite;
-    z-index: -1;
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    33% { transform: translateY(-20px) rotate(1deg); }
-    66% { transform: translateY(10px) rotate(-1deg); }
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-    .text-container h1 {
-        font-size: 2.5em;
-    }
-    
-    .login-container {
-        width: 90%;
-        padding: 30px 20px;
-    }
-    
-    .container h1 {
-        font-size: 2.5em;
-    }
-    
-    .container p {
-        font-size: 1.4em;
-    }
-    
-    #surpriseMessage {
-        font-size: 1em;
-        padding: 20px;
-    }
-}
-
-@media (max-width: 480px) {
-    .text-container h1 {
-        font-size: 2em;
-    }
-    
-    .container h1 {
-        font-size: 2em;
-    }
-    
-    .container p {
-        font-size: 1.2em;
-    }
+/* Responsive */
+@media (max-width: 768px){
+  .text-container h1 { font-size:2.2em; }
+  .login-container { width:90%; padding:30px 20px; }
+  .container h1 { font-size:2.2em; }
+  .container p { font-size:1.05em; }
+  #surpriseMessage { font-size:1.02em; padding:20px; }
 }
