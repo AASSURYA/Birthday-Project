@@ -21,19 +21,25 @@
     <h1>WELCOME TO MY WEBSITE</h1>
   </div>
 
-  <!-- Password Gate -->
-  <div class="login-container">
-    <h2>Enter Password</h2>
-    <input type="password" id="passwordInput" placeholder="Enter Password" />
-    <button id="enterBtn" onclick="checkPassword()">Enter</button>
-    <p id="errorMessage" class="error-message" aria-live="polite"></p>
+  <!-- Details Gate -->
+  <div class="login-container" id="detailsForm" aria-describedby="errorMessage">
+    <h2>Tell Us About You</h2>
+
+    <label class="sr-only" for="nameInput">Your Name</label>
+    <input type="text" id="nameInput" placeholder="Enter your name" autocomplete="name" />
+
+    <label class="sr-only" for="dobInput">Date of Birth</label>
+    <input type="date" id="dobInput" placeholder="Select your date of birth" />
+
+    <button id="enterBtn" type="button">Enter</button>
+    <p id="errorMessage" class="error-message hidden" aria-live="polite"></p>
   </div>
 
   <!-- Birthday Page -->
   <div id="birthdayPage" class="hidden" aria-hidden="true">
     <div class="container glass-card">
-      <h1>Happy Birthday, Anil! 🎉</h1>
-      <p>Wishing you a day filled with love, laughter, and joy.</p>
+      <h1 id="headline">Happy Birthday, Anil! 🎉</h1>
+      <p id="ageLine"></p>
 
       <div class="cta">
         <button id="surpriseBtn" onclick="showMessage()">Open Your Surprise</button>
